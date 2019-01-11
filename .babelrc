@@ -1,0 +1,27 @@
+{
+    "plugins": [
+        "transform-class-properties"
+    ],
+    "presets": [
+        "react-native",
+        [
+            "@babel/preset-env",
+            {
+                "modules": "commonjs"
+            }
+        ]
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "transform-class-properties"
+            ],
+            "presets": [
+                "react-native",
+                [
+                    "@babel/preset-env"
+                ]
+            ],
+        }
+    }
+}
