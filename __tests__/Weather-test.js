@@ -1,8 +1,17 @@
 import React from 'react';
 import App from '../App';
-import Weather from '../screens/WeatherScreen';
+import { Provider } from 'react-redux';
+import Enzyme, { mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import Sunshine from '../screens/WeatherScreen';
+import * as types from '../actions/actionTypes';
 import renderer from 'react-test-renderer';
 import NavigationTestUtils from 'react-navigation/NavigationTestUtils';
+import { wrap } from 'module';
+
+
 
 global.fetch = jest.fn(() => new Promise(resolve => resolve()));
 jest.mock('react-native-gesture-handler', () => { });
@@ -44,13 +53,38 @@ jest.mock("NativeModules", () => ({
     },
 }));
 
+Enzyme.configure({ adapter: new Adapter() });
 
+const middlewares = [thunk]; // you can mock any middlewares here if necessary
+const mockStore = configureStore(middlewares);
+
+const storeStateMock = {
+    weather: {
+        weather: '',
+        loading: true,
+        error: null,
+    }
+};
+let store;
+let component;
 describe('App snapshot', () => {
     jest.useFakeTimers();
     jest.setTimeout(30000);
-    it('renders the Main screen', async () => {
-        const tree = renderer.create(<Weather />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
 
+    // beforeEach(() => {
+    //     store = mockStore(storeStateMock);
+    //     component = mount(
+    //         <Provider store={store}>
+    //             <Sunshine />
+    //         </Provider>)
+    // });
+    const props = {
+        getWeather: jest.fn(),
+    };
+
+    it('renders the Sunshine screen', async () => {
+        const wrapper = shallow(<Sunshine {...props} />);
+        expect(wrapper).toMatchSnapshot();
+
+    });
 });

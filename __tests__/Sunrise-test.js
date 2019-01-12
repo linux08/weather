@@ -87,11 +87,4 @@ describe('App snapshot', () => {
         expect(wrapper).toMatchSnapshot();
 
     });
-
-    it('maps state props correctly', () => {
-        console.log('cco', component);
-        expect(1).toEqual(1);
-
-    });
-
 });

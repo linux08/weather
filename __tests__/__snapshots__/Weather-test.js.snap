@@ -3,7 +3,7 @@
 exports[`App snapshot renders the Sunshine screen 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Connect(SunriseScreen)
+  Symbol(enzyme.__unrendered__): <Connect(WeatherScreen)
     getWeather={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
