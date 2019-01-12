@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 import * as API from '../utils/api';
 
 describe('weather reducer', async () => {
+    jest.setTimeout(30000);
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual(
             {

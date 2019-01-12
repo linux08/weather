@@ -11,6 +11,7 @@ const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
 
 describe('actions', async () => {
+    jest.setTimeout(30000);
     afterEach(() => {
         fetchMock.restore()
     });

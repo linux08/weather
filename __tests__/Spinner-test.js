@@ -25,8 +25,9 @@ function setup() {
 
 describe('Spinner snapshot', () => {
     jest.useFakeTimers();
+    jest.setTimeout(30000);
 
-    it('should render self and subcomponents', () => {
+    it('should render self and subcomponents', async () => {
         const { enzymeWrapper } = setup()
         expect(enzymeWrapper.prop("style")).toEqual({
             flex: 1,
